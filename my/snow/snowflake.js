@@ -11,6 +11,19 @@ var _g_bubbles_hint = [
     "oh~oh~oh~ha~ha~ha~"
 ];
 
+function add_value(add_v, cur_v, max_value, default_v) {
+    var v = add_v+cur_v;
+    if(add_v > 0){
+        if(cur_v >= max_value) {cur_v = default_v; return cur_v;}
+        if(v >= max_value) return max_value;
+    }
+    else{
+        if(cur_v <= max_value) {cur_v = default_v; return cur_v;}
+        if(v <= max_value) return max_value;
+    }
+    return v;
+}
+
 function snowflake(canvas_id) {
     //缓冲区备胎
     var _canvas_2 = document.getElementById(canvas_id+"_bak");
@@ -50,6 +63,7 @@ function snowflake(canvas_id) {
     }
 
     //雪花精灵
+    var _snowflake_size = {x:60, y:60};
     var _snowflake_spirit = [];
     var _mouse_enter_snowflake_index = null;
     var _mouse_pos = [];
@@ -73,6 +87,7 @@ function snowflake(canvas_id) {
 
         //设置事件
         _canvas.onmousemove = mouse_move;
+        _canvas.onclick = mouse_click;
 
         //开始刷新
         window.requestAnimFrame(update);
@@ -89,7 +104,72 @@ function snowflake(canvas_id) {
         for (var i = 0; i < 50; ++i){
             _snowflake_spirit.push(gen_snowflake());
         }
+        //创建控制雪花
+        create_special_snowflake();
     };
+
+    function create_special_snowflake() {
+        var control_text_style = {style:_2d.createRadialGradient(0,0,10,30,30,30), font:"20px 黑体 500"};
+        control_text_style.style.addColorStop(0, "#ffb961"); //rgb(255,131,250)
+        control_text_style.style.addColorStop(1, "#fdfdff"); //rgb(191,62,255)
+        // control_text_style.style.addColorStop(1.0, "#2aff30"); //rgb(0,191,255)
+
+        var y = _body.height() - _snowflake_size.y - 30;
+        var total_x = _body.width() - _snowflake_size.x*2;
+
+        var snow = gen_snowflake();
+        snow.scale = 1;
+        snow.x = total_x;
+        snow.y = y;
+        var bubble = {x:snow.x+(snow.width-10)/2-10, y:snow.y+snow.height+15, snow:snow, text_style:control_text_style, always:true};
+        snow.control.func = snow_control_music;
+        snow.control.type = 1;
+        snow.control.play = false;
+        snow.control.bubble = bubble;
+        snow.data = "音乐";
+        _snowflake_spirit.push(snow);
+        _bubbles.push(bubble);
+        snow = gen_snowflake();
+        snow.scale = 1;
+        snow.x = total_x - _snowflake_size.x - 20;
+        snow.y = y;
+        bubble = {x:snow.x+(snow.width-10)/2-10, y:snow.y+snow.height+15, snow:snow, text_style:control_text_style, always:true};
+        snow.control.func = snow_control_message;
+        snow.control.type = 2;
+        snow.control.bubble = bubble;
+        snow.data = "消息";
+        _snowflake_spirit.push(snow);
+        _bubbles.push(bubble);
+    }
+    
+    function mouse_click() {
+        if(!_mouse_enter_snowflake_index)
+            return;
+
+        var x = _g_mouse_pos.clientX, y = _g_mouse_pos.clientY;
+        var t = _snowflake_spirit[_mouse_enter_snowflake_index];
+        if(x < t.x || x > (t.x+t.width*t.scale) ||
+            y < t.y || y > (t.y+t.height*t.scale))
+            return;
+
+        //鼠标命中,判断是不是控制雪花
+        if(!t.control || !t.control.func || !t.control.type)
+            return;
+
+        //控制面板
+        switch (t.control.type){
+            case 1: //音乐
+                if(!t.control.play){
+                    t.control.play = true;
+                    document.getElementById("music").play();
+                }
+                else{
+                    t.control.play = false;
+                    document.getElementById("music").pause();
+                }
+                break;
+        }
+    }
 
     function mouse_move(e) {
         mouseMove(e);
@@ -107,7 +187,7 @@ function snowflake(canvas_id) {
         }
 
         if(_mouse_pos.length > 10000)
-            _mouse_pos.pop();
+            _mouse_pos.splice(0, 1000);
         for (var i = 0; i < _snowflake_spirit.length; ++i){
             var snow = _snowflake_spirit[i];
             if(x >= snow.x && x <= (snow.x+snow.width*snow.scale) &&
@@ -118,15 +198,44 @@ function snowflake(canvas_id) {
         }
     }
 
+    function snow_control_music(snow, mouse_type) {
+        if(snow.control.play){
+            snow.angle = add_value(5, snow.angle, 360, 0);
+        }
+        if(mouse_type === null) return;
+        else if(mouse_type === 1) { //鼠标进入
+            snow.angle += 10;
+            return;
+        }
+    }
+
+    function snow_control_message(snow, mouse_type) {
+        snow.angle = add_value(5, snow.angle, 360, 0);
+        if(mouse_type === null) return;
+        else if(mouse_type === 1) { //鼠标进入
+            snow.angle += 10;
+            return;
+        }
+    }
+
+    function snow_control_default(snow) {
+        snow.angle = add_value(-5, snow.angle, 0, 360);
+        var bubble = {x:snow.x, y:snow.y, snow:snow};
+        var t_width = _2d.measureText(snow.data);
+        if(_body.width()<=snow.x+t_width.width+snow.width) bubble.x -= (t_width.width+snow.width/2);
+        _bubbles.push(bubble);
+    }
+
     function gen_snowflake() {
         return snowflake = {
-            width: 60,
-            height: 60,
+            width: _snowflake_size.x,
+            height: _snowflake_size.y,
             angle: 0,
             scale: Math.random(),
 
             //其他
             data: _g_bubbles_hint[Math.floor(xy_get_random(0, _g_bubbles_hint.length-1))],
+            control: {func:null, type:null},
 
             // 控制y
             y: -xy_get_random(60, 500),
@@ -141,12 +250,16 @@ function snowflake(canvas_id) {
             update: function (mouse_enter) {
                 //事件更新
                 if(mouse_enter){
-                    this.angle -= 5;
-                    if(this.angle <= 0) this.angle = 360;
-                    var bubble = {x:this.x, y:this.y, snow:this};
-                    var t_width = _2d.measureText(this.data);
-                    if(_body.width()<=this.x+t_width.width+this.width) bubble.x -= (t_width.width+this.width/2);
-                    _bubbles.push(bubble);
+                    if(this.control && this.control.func)
+                        this.control.func(this, 1);
+                    else
+                        snow_control_default(this);
+                    return;
+                }
+
+                //特殊雪花更新
+                if(this.control && this.control.func){
+                    this.control.func(this, null);
                     return;
                 }
 
@@ -162,11 +275,9 @@ function snowflake(canvas_id) {
 
                 //旋转以及扭曲更新
                 if(Math.random() > 0.5){
-                    this.angle += 2;
-                    if(this.angle > 360) this.angle = 0;
+                    this.angle = add_value(2, this.angle, 360, 0);
                 }
                 else{
-
                 }
 
                 //y轴更新
@@ -253,9 +364,16 @@ function snowflake(canvas_id) {
         if(!_bubbles.length) return;
         for (var i = 0; i < _bubbles.length; ++i){
             var b = _bubbles[i];
+            context.save();
+            if(b.text_style){
+                context.font = b.text_style.font;
+                context.fillStyle = b.text_style.style;
+            }
             context.fillText(b.snow.data, b.x, b.y, 200);
+            context.restore();
+            if(!b.always)
+                _bubbles.splice(i, 1);
         }
-        _bubbles = [];
     }
 
     function draw_mouse_path(context){
