@@ -1,0 +1,52 @@
+
+
+html, body {
+    margin: auto 0;
+    width: 100%;
+    height: 90%
+}
+
+@font-face{
+    font-family: my_font_daimwwt;/*定义font的名字*/
+    src: url("../resource/font-typeface/dmwwt.ttf");/*呆萌娃娃体 把下载的字体文件引入进来*/
+}
+
+@font-face{
+    font-family: my_font_mnjxls;/*定义font的名字*/
+    src: url("../resource/font-typeface/mi_ni_xiao_jian_shu.ttf");/*迷你简小隶书 把下载的字体文件引入进来*/
+}
+
+
+.background {
+    background-color: #ad87ff;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.footer{
+    position:absolute;
+    bottom:0;
+    /*width:100%;*/
+    /*height:10em;!*footer的高度*!*/
+    /*background: rgba(240, 248, 255, 0.8);*/
+    /*clear:both;*/
+}
+
+.right_footer{
+    position:absolute;
+    bottom:0;
+    right:0;
+    /*width:100%;*/
+    /*clear:both;*/
+}
+
+.error_input_box {
+    border: solid 2px #CC3333;
+}
+
+.p_error_hint{
+    color: #CC3333;
+    font-size: 0.8em;
+    font-style: italic;
+}

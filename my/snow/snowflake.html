@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>雪花</title>
+
+    <script src="../../js/jquery/jquery.min.js" type="application/javascript"></script>
+    <script src="../../js/xy_random.js" type="application/javascript"></script>
+    <script src="../../js/mouse.js" type="application/javascript"></script>
+
+    <style>
+        .no_limit{
+            margin: 0 auto;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="no_limit">
+
+<div class="no_limit">
+    <canvas id="snowflake"></canvas>
+    <canvas id="snowflake_bak" style="display: none"></canvas>
+
+</div>
+
+<div style="position: absolute; bottom: 1em; right: 1em">
+    <audio src="christmas.mp3" loop preload controls ></audio>
+    <!--autoplay-->
+</div>
+
+<script src="snowflake.js" type="application/javascript"></script>
+<script>
+    snowflake("snowflake");
+</script>
+
+</body>
+</html>

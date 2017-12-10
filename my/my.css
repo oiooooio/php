@@ -1,0 +1,64 @@
+@import "../css/global.css";
+
+.title{
+    color: #EEAD0E;
+    line-height: 2em;
+    font-weight: bold;
+    font-family: my_font_daimwwt, serif;
+}
+
+.music_name {
+    color: #CD00CD;
+    font-family: my_font_daimwwt, serif;
+    font-size: 1.25em;
+    letter-spacing: 0.2em;
+    font-weight: bold;
+}
+
+.theme_bg_image{
+    background: repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+.button_radius{
+    border-radius: 100%;
+    width: 5em;
+    height: 5em;
+    border: none;
+    z-index: -1;
+}
+
+@keyframes rotation{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.bt_play{
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-name: rotation;
+    animation-delay: 0s;
+    animation-timing-function: linear;
+    background: url('../resource/button_pics/play.png');
+    background-size: 100% 100%;
+    z-index: 99;
+}
+
+.bt_next {
+    background: url('../resource/button_pics/next.png');
+    background-size: 100% 100%;
+}
+/*.bt_next:hover{*/
+    /*background: url('../resource/button_pics/next_hover.png');*/
+    /*background-size: 100% 100%;*/
+/*}*/
+.bt_next:active{
+    background: url('../resource/button_pics/next_active.png');
+    background-size: 100% 100%;
+}

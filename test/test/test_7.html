@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试随机数</title>
+
+    <script src="../../js/jquery/jquery.min.js" type="application/javascript"></script>
+    <script src="../../js/xy_random.js" type="application/javascript"></script>
+
+</head>
+<body>
+
+<div>
+    0-9
+    <div id="out_random_num1"></div>
+    <hr>
+</div>
+
+<div>
+    1-100
+    <div id="out_random_num2"></div>
+    <hr>
+</div>
+
+<div>
+    0.5-3
+    <div id="out_random_num3"></div>
+    <hr>
+</div>
+
+<div>
+    -3-4
+    <div id="out_random_num4"></div>
+    <hr>
+</div>
+
+<div>
+    -1-1
+    <div id="out_random_num5"></div>
+    <hr>
+</div>
+
+<div>
+    -5-5
+    <div id="out_random_num6"></div>
+    <hr>
+</div>
+
+<script>
+    xt_random_test("out_random_num1", 0, 9);
+    xt_random_test("out_random_num4", -3, 4);
+    xt_random_test("out_random_num2", 1, 100);
+    xt_random_test("out_random_num3", 0.5, 3);
+    xt_random_test("out_random_num5", -1, 1);
+    xt_random_test("out_random_num6", -5, 5);
+</script>
+
+</body>
+</html>

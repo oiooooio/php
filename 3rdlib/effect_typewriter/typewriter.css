@@ -1,0 +1,62 @@
+
+
+.div{
+    font-family: my_font_daimwwt, serif;
+    margin: 0 auto;
+    font-size: 1.5em;
+    height: 70%;
+    width: 80%;
+}
+
+.div_inner {
+    vertical-align: middle;
+}
+
+#log {
+    color: #7b7b7b;
+    font-family: 宋体, serif;
+    font-size: 0.7em;
+}
+
+#wangli.color1 {
+    color: #8730ff
+}
+
+#wangli.color2 {
+    color: #ed15b6;
+}
+
+#wangli.color3 {
+    color: #1b15ed;
+}
+
+@-webkit-keyframes caret {
+    0%, 100% {
+        opacity: 1
+    }
+    50% {
+        opacity: 0
+    }
+}
+
+@keyframes caret {
+    0%, 100% {
+        opacity: 1
+    }
+    50% {
+        opacity: 0
+    }
+}
+
+.saying:after {
+    content: "|";
+    font-family: Arial, sans-serif;
+    font-size: 1.2em;
+    line-height: 0;
+    display: inline-block;
+    vertical-align: baseline;
+    opacity: 1;
+    -webkit-animation: caret 500ms infinite;
+    animation: caret 500ms infinite
+}
+

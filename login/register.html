@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../resource/icon/login_1.png" rel="icon" type="image/x-icon">
+    <title>注册</title>
+
+    <link href="../3rdlib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../3rdlib/flat-ui-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/global.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/jquery/jquery.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/tether-1.3.3/dist/js/tether.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/flat-ui-master/dist/js/flat-ui.min.js" type="application/javascript"></script>
+    <script src="../js/extend_inner_obj_attr.js" type="application/javascript"></script>
+    <script src="../js/log.js" type="application/javascript"></script>
+
+    <style>
+        .bg {
+            /*background-image: url("../resource/pics/bg_1.png");*/
+            margin: auto 0;
+            text-align: center;
+        }
+
+        .div_login{
+            margin-top: 5%;
+        }
+
+        .input_box{
+            width: 20em;
+        }
+
+        .button_my{
+            width: 8em;
+            vertical-align:bottom;
+        }
+    </style>
+
+    <script>
+        function commit() {
+            if(!check()){
+                return;
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "./register.php",
+                data: {
+                    user_name: $("#user_name").val(),
+                    user_pwd: $("#user_pwd").val(),
+                    user_email: $("#user_email").val(),
+                    invite_code: $("#user_invite_code").val()
+                    //user_nickname: $("#user_nickname").val()
+                    },
+                dataType: "html",
+
+                success: function (data) {
+                    var r = JSON.parse(data);
+
+                    if(r["code"] != "ok"){
+                        $("#error").html(r["code"]);
+                        return;
+                    }
+                    location.href = "./index.html";
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("{0}, {1}, {2}".format(jqXHR, textStatus, errorThrown));
+                }
+            });
+        }
+        
+        function check() {
+            function change_style(ctl_id, class_name, is_add) {
+                if(is_add){$(ctl_id).addClass(class_name);}
+                else {$(ctl_id).removeClass(class_name);}
+            }
+
+            change_style("#user_name", "error_input_box", false);
+            change_style("#user_pwd", "error_input_box", false);
+            change_style("#user_email", "error_input_box", false);
+
+            if($("#user_name").val().length < 3){
+                change_style("#user_name", "error_input_box", true);
+                return false;
+            }
+            if($("#user_pwd").val().length < 6){
+                change_style("#user_pwd", "error_input_box", true);
+                return false;
+            }
+            if($("#user_email").val().indexOf("@") == -1){
+                change_style("#user_email", "error_input_box", true);
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</head>
+
+<body class="bg">
+<div class="div_login" id="div_content">
+    <input id="user_name" type="text" placeholder="*用户名" class="form-control input_box" style="display: inline-block;"/>
+    <br>
+    <input id="user_pwd" type="text" placeholder="*用户密码" class="form-control input_box" style="display: inline-block; margin-top: 1em"/>
+    <br>
+    <input id="user_email" type="text" placeholder="*用户邮箱" class="form-control input_box" style="display: inline-block; margin-top: 1em"/>
+    <br>
+    <input id="user_invite_code" type="text" placeholder="邀请码" class="form-control input_box" style="display: inline-block; margin-top: 1em"/>
+    <br>
+    <!--<input name="user_nickname" type="text" placeholder="昵称" class="form-control input_box"  style="display: inline-block; margin-top: 1em" />-->
+    <!--<br>-->
+    <button class="btn btn-hg btn-primary button_my" onclick="commit();" type="submit"  style="display: inline-block; margin-top: 1em">注 册</button>
+
+    <br>
+    <div id="error" style="color: #ff0000"></div>
+    <p style="font-size: 1em; color: #CC3333;">因为目前不能发送邮件，请正确填写邮箱，后续会对邮箱的合法性进行验证，以后可通过邮箱找回密码！</p>
+
+</div>
+</body>
+
+</html>
+

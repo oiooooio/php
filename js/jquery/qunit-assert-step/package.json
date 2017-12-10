@@ -1,0 +1,97 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "qunit-assert-step@1.0.3",
+        "scope": null,
+        "escapedName": "qunit-assert-step",
+        "name": "qunit-assert-step",
+        "rawSpec": "1.0.3",
+        "spec": "1.0.3",
+        "type": "version"
+      },
+      "/home/wangli/project/ubuntu-php-apache/jquery"
+    ]
+  ],
+  "_from": "qunit-assert-step@1.0.3",
+  "_id": "qunit-assert-step@1.0.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/qunit-assert-step",
+  "_npmUser": {
+    "name": "jamesmgreene",
+    "email": "james.m.greene@gmail.com"
+  },
+  "_npmVersion": "1.4.28",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "qunit-assert-step@1.0.3",
+    "scope": null,
+    "escapedName": "qunit-assert-step",
+    "name": "qunit-assert-step",
+    "rawSpec": "1.0.3",
+    "spec": "1.0.3",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/qunit-assert-step/-/qunit-assert-step-1.0.3.tgz",
+  "_shasum": "73eb857dc6b6900fc14938e0e4cb686cd0df9dfd",
+  "_shrinkwrap": null,
+  "_spec": "qunit-assert-step@1.0.3",
+  "_where": "/home/wangli/project/ubuntu-php-apache/jquery",
+  "author": {
+    "name": "jQuery Foundation and other contributors",
+    "url": "https://github.com/JamesMGreene/qunit-assert-step/blob/master/AUTHORS.txt"
+  },
+  "bugs": {
+    "url": "https://github.com/JamesMGreene/qunit-assert-step/issues"
+  },
+  "dependencies": {},
+  "description": "A QUnit plugin for asserting the proper sequence in which the code should execute.",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-qunit": "~0.2.1",
+    "grunt-git-authors": "~1.2.0",
+    "qunitjs": "1.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "73eb857dc6b6900fc14938e0e4cb686cd0df9dfd",
+    "tarball": "https://registry.npmjs.org/qunit-assert-step/-/qunit-assert-step-1.0.3.tgz"
+  },
+  "gitHead": "d11aac79a4068de6daf92db1b01470d5d9e54412",
+  "homepage": "https://github.com/JamesMGreene/qunit-assert-step",
+  "keywords": [
+    "qunit-plugin",
+    "qunit-assert",
+    "qunit",
+    "assert",
+    "order",
+    "step"
+  ],
+  "license": {
+    "name": "MIT",
+    "url": "http://www.opensource.org/licenses/mit-license.php"
+  },
+  "main": "qunit-assert-step.js",
+  "maintainers": [
+    {
+      "name": "jamesmgreene",
+      "email": "james.m.greene@gmail.com"
+    }
+  ],
+  "name": "qunit-assert-step",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JamesMGreene/qunit-assert-step.git"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "version": "1.0.3"
+}

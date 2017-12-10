@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FreeFileSync XmlFormat="7" XmlType="GUI">
+    <MainConfig>
+        <Comparison>
+            <Variant>TimeAndSize</Variant>
+            <Symlinks>Exclude</Symlinks>
+            <IgnoreTimeShift/>
+        </Comparison>
+        <SyncConfig>
+            <Variant>Custom</Variant>
+            <CustomDirections>
+                <LeftOnly>right</LeftOnly>
+                <RightOnly>right</RightOnly>
+                <LeftNewer>right</LeftNewer>
+                <RightNewer>left</RightNewer>
+                <Different>none</Different>
+                <Conflict>none</Conflict>
+            </CustomDirections>
+            <DetectMovedFiles>false</DetectMovedFiles>
+            <DeletionPolicy>RecycleBin</DeletionPolicy>
+            <VersioningFolder Style="Replace"/>
+        </SyncConfig>
+        <GlobalFilter>
+            <Include>
+                <Item>*</Item>
+            </Include>
+            <Exclude>
+                <Item>\System Volume Information\</Item>
+                <Item>\$Recycle.Bin\</Item>
+                <Item>\RECYCLER\</Item>
+                <Item>\RECYCLED\</Item>
+                <Item>*\desktop.ini</Item>
+                <Item>*\thumbs.db</Item>
+                <Item>\.idea\workspace.xml</Item>
+                <Item>*.ffs_gui</Item>
+                <Item>*\wp\</Item>
+                <Item>*\.idea\</Item>
+                <Item>*.pyc|</Item>
+            </Exclude>
+            <TimeSpan Type="None">0</TimeSpan>
+            <SizeMin Unit="None">0</SizeMin>
+            <SizeMax Unit="None">0</SizeMax>
+        </GlobalFilter>
+        <FolderPairs>
+            <Pair>
+                <Left>E:\php</Left>
+                <Right>sftp://root@192.168.1.188:10406/var/project/php|chan=10|keyfile=E:\id_rsa</Right>
+            </Pair>
+        </FolderPairs>
+        <OnCompletion/>
+    </MainConfig>
+    <GuiConfig>
+        <HandleError>Popup</HandleError>
+        <MiddleGridView>Category</MiddleGridView>
+    </GuiConfig>
+</FreeFileSync>

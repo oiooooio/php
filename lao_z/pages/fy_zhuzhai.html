@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加住宅信息</title>
+
+    <link href="../../3rdlib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../3rdlib/flat-ui-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/global.css" rel="stylesheet" type="text/css">
+
+    <style>
+        table{
+        }
+        table tr{
+            line-height: 3em;
+        }
+
+        table tr td{
+            padding-right: 0.5em;
+        }
+
+    </style>
+
+</head>
+<body style="background-color: #E0EEE0; margin: auto 0; padding: 1em">
+
+<div>
+    <table id="fy_info">
+        <tr>
+            <td>楼盘名称</td>
+            <td colspan="3"><input type="text" placeholder="楼盘名称" class="form-control input_box" /></td>
+        </tr>
+        <tr>
+            <td>区域</td>
+            <td><input type="text" placeholder="区县" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="范围" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="商圈" class="form-control input_box" /></td>
+        </tr>
+        <tr>
+            <td>房源位置</td>
+            <td><input type="text" placeholder="房源位置" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="栋座里弄阁" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="单元/号" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="楼" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="室" class="form-control input_box" /></td>
+        </tr>
+        <tr>
+            <td>建筑类型</td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        Large button <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" id="jianzhuleixing">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <label class="radio" for="radio_add">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_add" data-toggle="radio">
+                    多层
+                </label>
+            </td>
+            <td>
+                <label class="radio" for="radio_del">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_del" data-toggle="radio">
+                    电梯
+                </label>
+            </td>
+            <td>
+                <label class="radio" for="asda">
+                    <input type="radio" name="optionsRadios1" value="" id="asda" data-toggle="radio">
+                    其他更多，这里是UI例子
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>户型</td>
+            <td><input type="text" placeholder="室" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="厅" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="卫" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="阳台" class="form-control input_box" /></td>
+        </tr>
+        <tr>
+            <td>建筑面积</td>
+            <td><input type="text" placeholder="㎡" class="form-control input_box" /></td>
+            <td>填写产权面积，赠送面积不计算在内</td>
+        </tr>
+        <tr>
+            <td>售价</td>
+            <td><input type="text" placeholder="万元" class="form-control input_box" /></td>
+            <td>单价：元/㎡</td>
+        </tr>
+        <tr>
+            <td>底价</td>
+            <td><input type="text" placeholder="万元" class="form-control input_box" /></td>
+            <td>房源有效期 <input type="date" name="user_date"/></td>
+        </tr>
+        <tr>
+            <td>装修情况</td>
+            <td>
+                <label class="radio" for="radio_add">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_add" data-toggle="radio">
+                    毛坯
+                </label>
+            </td>
+            <td>
+                <label class="radio" for="radio_del">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_del" data-toggle="radio">
+                    普通
+                </label>
+            </td>
+            <td>
+                <label class="radio" for="asda">
+                    <input type="radio" name="optionsRadios1" value="" id="asda" data-toggle="radio">
+                    其他更多，这里是UI例子
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>所在楼层</td>
+            <td><input type="text" placeholder="第几层" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="共几层" class="form-control input_box" /></td>
+            <td>单层户数</td>
+            <td><input type="text" placeholder="梯" class="form-control input_box" /></td>
+            <td><input type="text" placeholder="户" class="form-control input_box" /></td>
+        </tr>
+        <tr>
+            <td>房屋权属</td>
+            <td>
+                <label class="radio" for="radio_add">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_add" data-toggle="radio">
+                    产权
+                </label>
+            </td>
+            <td>
+                <label class="radio" for="radio_del">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_del" data-toggle="radio">
+                    合同
+                </label>
+            </td>
+            <td>
+                <label class="radio" for="asda">
+                    <input type="radio" name="optionsRadios1" value="" id="asda" data-toggle="radio">
+                    其他更多，这里是UI例子
+                </label>
+            </td>
+            <td>房源有效期 <input type="date" name="user_date"/></td>
+        </tr>
+        <tr>
+            <td>朝向</td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        请选择 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                是否临街
+                <label class="radio" for="radio_add" style="display: inline-block">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_add" data-toggle="radio" style="display: inline-block">
+                    是
+                </label>
+                <label class="radio" for="radio_add" style="display: inline-block">
+                    <input type="radio" name="optionsRadios1" value="" id="radio_add" data-toggle="radio" style="display: inline-block">
+                    否
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>建筑年代</td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        年 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                建筑结构
+                <div class="btn-group" style="display: inline-block">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        年 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>腾房日期 <input type="date" name="user_date"/></td>
+        </tr>
+    </table>
+</div>
+
+
+<script src="../../js/jquery/jquery.min.js" type="application/javascript"></script>
+<script src="../../3rdlib/bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+<script src="../../3rdlib/flat-ui-master/dist/js/flat-ui.min.js" type="application/javascript"></script>
+<script src="../../3rdlib/tether-1.3.3/dist/js/tether.min.js" type="application/javascript"></script>
+<script src="../../js/extend_inner_obj_attr.js" type="application/javascript"></script>
+<script src="../../js/log.js" type="application/javascript"></script>
+<script src="fy.js" type="application/javascript"></script>
+
+<script>
+    function  set_first_td_width() {
+        $("#fy_info").find("tr").each(function () {
+            //alert($(this).children("td:eq(0)").text());
+            $(this).children("td:eq(0)").css("width", "6em");
+        });
+    }
+
+    //ui设置
+    $(':radio').radiocheck();
+    $('.dropdown-toggle').dropdown();
+    //初始化
+    set_first_td_width();
+</script>
+
+</body>
+</html>

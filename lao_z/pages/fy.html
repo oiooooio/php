@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房源管理</title>
+
+    <link href="../../3rdlib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../3rdlib/flat-ui-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/global.css" rel="stylesheet" type="text/css">
+
+    <script src="../../js/jquery/jquery.min.js" type="application/javascript"></script>
+    <script src="../../3rdlib/tether-1.3.3/dist/js/tether.min.js" type="application/javascript"></script>
+    <script src="../../3rdlib/bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="../../3rdlib/flat-ui-master/dist/js/flat-ui.min.js" type="application/javascript"></script>
+    <script src="../../js/extend_inner_obj_attr.js" type="application/javascript"></script>
+    <script src="../../js/log.js" type="application/javascript"></script>
+
+    <style>
+
+    </style>
+
+</head>
+<body style="background-color: #E0EEE0">
+
+<div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">增加房源</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav">
+                <li class="active" onclick="click_zhuzhai()"><a href="#">住宅</a></li>
+                <li onclick="click_bieshu()"><a href="#">别墅</a></li>
+                <li><a href="#">商铺</a></li>
+                <li><a href="#">写字</a></li>
+                <li><a href="#">其他</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" action="#" role="search">
+                <button class="btn btn-default btn-wide input_box" style="margin-right: 0.5em" onclick="click_kv()">常量管理</button>
+                <!--<div class="form-group">-->
+                    <!--<div class="input-group">-->
+                        <!--<input class="form-control" id="navbarInput-01" type="search" placeholder="Search">-->
+                        <!--<span class="input-group-btn">-->
+                            <!--<button type="submit" class="btn"><span class="fui-search"></span></button>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </nav><!-- /navbar -->
+
+    <div id="content" style="padding-left: 1em">
+    </div>
+</div>
+
+<script>
+
+    var _g_fy_type = "";
+
+    function check_fy_type(type_str) {
+        if(type_str === _g_fy_type){
+            //alert("请勿重复点击");
+            return false;
+        }
+        _g_fy_type = type_str;
+        return true;
+    }
+
+    function click_zhuzhai() {
+        if(!check_fy_type("zhuzhai"))
+            return;
+        load_html("fy_zhuzhai.html");
+    }
+
+    function click_bieshu() {
+        if(!check_fy_type("bieshu"))
+            return;
+        alert("功能为未实现");
+    }
+
+    function click_kv() {
+        //window.location.href="add_kvs.html";
+        window.open("add_kvs.html");
+    }
+
+    function load_html(html) {
+        $(document).ready(function(){
+            function ajax_load(local){
+                var html_obj=$.ajax({url:local,async:false});
+                $("#content").html(html_obj.responseText);
+            }
+            ajax_load(html);
+        });
+    }
+</script>
+
+</body>
+</html>

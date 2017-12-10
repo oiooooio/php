@@ -1,0 +1,105 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "husky@0.11.4",
+        "scope": null,
+        "escapedName": "husky",
+        "name": "husky",
+        "rawSpec": "0.11.4",
+        "spec": "0.11.4",
+        "type": "version"
+      },
+      "/home/wangli/project/ubuntu-php-apache/jquery"
+    ]
+  ],
+  "_from": "husky@0.11.4",
+  "_id": "husky@0.11.4",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/husky",
+  "_nodeVersion": "5.6.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/husky-0.11.4.tgz_1458246525018_0.24839647905901074"
+  },
+  "_npmUser": {
+    "name": "typicode",
+    "email": "typicode@gmail.com"
+  },
+  "_npmVersion": "3.7.4",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "husky@0.11.4",
+    "scope": null,
+    "escapedName": "husky",
+    "name": "husky",
+    "rawSpec": "0.11.4",
+    "spec": "0.11.4",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/husky/-/husky-0.11.4.tgz",
+  "_shasum": "1d095c6a706242f4671c6f6cab4e0048fd646420",
+  "_shrinkwrap": null,
+  "_spec": "husky@0.11.4",
+  "_where": "/home/wangli/project/ubuntu-php-apache/jquery",
+  "author": {
+    "name": "Typicode",
+    "email": "typicode@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/typicode/husky/issues"
+  },
+  "dependencies": {
+    "normalize-path": "^1.0.0"
+  },
+  "description": "Prevents bad commit or push (git hooks, pre-commit/precommit, pre-push/prepush, post-merge/postmerge and all that stuff...)",
+  "devDependencies": {
+    "rimraf": "^2.2.8"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "1d095c6a706242f4671c6f6cab4e0048fd646420",
+    "tarball": "https://registry.npmjs.org/husky/-/husky-0.11.4.tgz"
+  },
+  "gitHead": "8bd5cdbd8c5fa0850c5a2a8583c2fc9d043a38f6",
+  "homepage": "https://github.com/typicode/husky",
+  "keywords": [
+    "git",
+    "hook",
+    "hooks",
+    "pre-commit",
+    "precommit",
+    "post-commit",
+    "postcommit",
+    "pre-push",
+    "prepush",
+    "post-merge",
+    "postmerge",
+    "test"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "typicode",
+      "email": "typicode@gmail.com"
+    }
+  ],
+  "name": "husky",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/typicode/husky.git"
+  },
+  "scripts": {
+    "install": "node ./bin/install.js",
+    "test": "node test",
+    "uninstall": "node ./bin/uninstall.js"
+  },
+  "version": "0.11.4"
+}

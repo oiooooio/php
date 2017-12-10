@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../3rdlib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../3rdlib/flat-ui-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="../3rdlib/bootsrtap-buttons.css" rel="stylesheet" type="text/css">
+    <link href="../css/global.css" rel="stylesheet" type="text/css">
+
+    <script src="../3rdlib/tether-1.3.3/dist/js/tether.min.js" type="application/javascript"></script>
+    <script src="../js/jquery/jquery.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/flat-ui-master/dist/js/flat-ui.min.js" type="application/javascript"></script>
+    <script src="../js/extend_inner_obj_attr.js" type="application/javascript"></script>
+    <script src="../3rdlib/layer-master/layer.js" type="application/javascript"></script>
+    <script src="../js/log.js" type="application/javascript"></script>
+    <script src="../login/login.js" type="application/javascript"></script>
+    <script src="../js/mix.js" type="application/javascript"></script>
+
+    <link href="../resource/icon/suggestion.png" rel="icon" type="image/x-icon">
+    <title>建议</title>
+
+    <style>
+        .bg{
+            margin: 0 auto;
+            vertical-align: middle;
+            background-color: rgba(255, 135, 32, 0.16);
+            padding-left: 1em;
+        }
+
+        .div{
+            margin-top: 3em;
+            margin-left: 2em;
+        }
+
+        .div_content{
+            overflow-y: auto;
+            height: 60%;
+        }
+
+        .my_input_box_title{
+            width: 20em;
+        }
+
+        .my_input_box_content{
+            width: 30em;
+            height: 7em;
+        }
+
+        .my_button{
+            width: 8em;
+            vertical-align: bottom;
+        }
+
+        .my_button_small{
+            padding: 0;
+            width: 5em;
+            height: 2em;
+            margin-left: 1em;
+        }
+
+        #login_ret {
+            font-size: 0.8em;
+            color: #0099CC;
+            font-style: italic;
+        }
+
+    </style>
+
+    <script>
+        function change_style(ctl_id, class_name, is_add) {
+            if(is_add){$(ctl_id).addClass(class_name);}
+            else {$(ctl_id).removeClass(class_name);}
+        }
+        
+        function my_clear() {
+            $("#content").val("");
+        }
+        
+        function commit() {
+            change_style("#content", "error_input_box", false);
+
+            if($("#content").val().length == 0){
+                change_style("#content", "error_input_box", true);
+                return;
+            }
+
+            var md5 = get_user_md5();
+            $.ajax({
+                method: "POST",
+                url: "./suggestion.php",
+                data: {
+                    content:$("#content").val(),
+                    con_type:$("#con_type").val(),
+                    md5:md5 == null ? "" : md5
+                },
+                dataType: "html",
+
+                success: function (data) {
+                    if(data.length == 0){return;}
+
+                    var tmp = JSON.parse(data);
+                    if(tmp["code"] != "ok"){
+                        $("#error_hint").html(tmp["code"]);
+                        return;
+                    }
+
+                    alert("提交成功，谢谢你的建议或投诉");
+                    my_clear();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("{0}, {1}, {2}".format(jqXHR, textStatus, errorThrown));
+                }
+            });
+        }
+    </script>
+
+</head>
+
+<body class="bg">
+<div>
+
+    <select id="con_type" class="form-control select select-primary select-block mbl" style="width: 20em; display: inline-block; margin-top: 2em">
+        <option value="1">建议</option>
+        <option value="2">投诉</option>
+    </select>
+    <script>
+        $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+    </script>
+
+    <div class="div_content">
+        <textarea id="content" tabindex="3" cols="20" rows="7" placeholder="内容, 最多1000字"
+                  class="form-control my_input_box_content"></textarea>
+    </div>
+
+    <br>
+    <button id="bt_commit" tabindex="6" class="btn btn-primary my_button" onclick="commit();">提交</button>
+    <button id="bt_clear" class="btn btn-primary my_button_small" onclick="my_clear();">清空</button>
+    <p id="error_hint" class="p_error_hint"></p>
+</div>
+
+</body>
+</html>

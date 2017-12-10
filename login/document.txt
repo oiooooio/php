@@ -1,0 +1,4 @@
+login/index.html?arg1=auto_close
+    arg1:如果登录成功，则自动关闭本窗口
+
+

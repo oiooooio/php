@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../3rdlib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../3rdlib/flat-ui-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="../3rdlib/bootsrtap-buttons.css" rel="stylesheet" type="text/css">
+    <link href="../css/global.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/jquery/jquery.min.js" type="application/javascript"></script>
+    <script src="../js/extend_inner_obj_attr.js" type="application/javascript"></script>
+    <script src="../3rdlib/tether-1.3.3/dist/js/tether.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/bootstrap/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/flat-ui-master/dist/js/flat-ui.min.js" type="application/javascript"></script>
+    <script src="../login/login.js" type="application/javascript"></script>
+
+    <link href="../resource/icon/icon_1.png" rel="icon" type="image/x-icon">
+    <title>每日一句 HEADER</title>
+
+    <script>
+        function check_login() {
+            var user_name = get_user_nickname();
+            if(user_name == null){
+                user_name = get_user_name();
+            }
+
+            var ctl = $("#user_name");
+            if(user_name){
+                ctl.html(user_name);
+                ctl.click(function () {
+                    location.href = "../login/theme.html";
+                });
+                show_login_out(true);
+            }
+            else{
+                ctl.click(function () {
+                    location.href = "../login/index.html";
+                });
+                show_login_out(false);
+                ctl.html("注册/登陆");
+            }
+        }
+
+        function login_out_() {
+            login_out();
+            check_login();
+        }
+
+        function show_login_out(is_show) {
+            var ctl = $("#login_out");
+            if(is_show){
+                ctl.css("visibility", "visible");
+            }
+            else{
+                ctl.css("visibility", "hidden");
+            }
+        }
+
+        function set_active() {
+            $("#ul_functions").children().each(function () {
+                if($(this).hasClass("active")){
+                    $(this).removeClass("active");
+                }
+            });
+            $(this).addClass("active");
+        }
+
+    </script>
+</head>
+<body style="padding: 0; margin: 0;">
+
+<div>
+    <nav class="navbar navbar-default" role="navigation" style="background-color: transparent; margin-bottom: 0;">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <!--<a class="navbar-brand" href="#">每日一句</a>-->
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01" style="padding: 0">
+            <ul id="ul_functions" class="nav navbar-nav">
+                <li><a href="#" onclick="location.href = './index.php'; set_active();">每日一句</a></li>
+                <li><a href="#" onclick="location.href = './sentence_list.php'; set_active();">我的墨水</a></li>
+                <li><a href="#" onclick="location.href = 'backg.php'; set_active();">添墨水</a></li>
+                <li><a href="#" id="user_name">注册/登陆</a></li>
+                <li><a href="#" id="login_out" style="visibility: hidden" onclick="login_out_()">退出</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav><!-- /navbar -->
+</div>
+
+
+    <script>
+        check_login();
+    </script>
+
+
+</body>
+</html>

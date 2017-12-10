@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="../resource/icon/login_1.png" rel="icon" type="image/x-icon">
+    <link href="../3rdlib/flat-ui-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="./login.css" rel="stylesheet" type="text/css">
+
+    <script src="../js/jquery/jquery.min.js" type="application/javascript"></script>
+    <script src="../3rdlib/flat-ui-master/dist/js/flat-ui.min.js" type="application/javascript"></script>
+    <script src="../js/extend_inner_obj_attr.js" type="application/javascript"></script>
+    <script src="../js/log.js" type="application/javascript"></script>
+    <script src="../js/mix.js" type="application/javascript"></script>
+    <script src="./login.js" type="application/javascript"></script>
+
+
+    <style>
+        .bg {
+            /*background-image: url("../resource/pics/bg_1.png");*/
+            background-color: rgba(204, 204, 255, 0.61);
+            margin: auto 0;
+            text-align: center;
+        }
+
+        .div_login {
+            margin-top: 10%;
+        }
+
+        .input_box {
+            width: 20em;
+        }
+
+        .button_my {
+            width: 8em;
+            vertical-align: bottom;
+        }
+
+        .register {
+            margin-left: 1em;
+        }
+    </style>
+
+    <script type="application/javascript">
+        var g_ip = "";
+
+        function submit() {
+            var name = $("#user_name").val();
+            var pwd = $("#user_pwd").val();
+
+            if (!check(name, pwd)) {
+                return;
+            }
+
+            $.ajax({
+                method: "POST",
+                url: "./login.php",
+                data: {
+                    md5:get_user_md5(),
+                    user_name: name,
+                    user_pwd: pwd,
+                    is_auto_save:$("#auto_login_7")[0].checked,
+                    ip:g_ip
+                },
+                dataType: "html",
+
+                success: function (data) {
+                    handle_error(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("{0}, {1}, {2}".format(jqXHR, textStatus, errorThrown));
+                }
+            });
+        }
+
+        function handle_error(data) {
+            try {
+                var result = JSON.parse(data);
+            }
+            catch (ex){
+                log_info("handle_error", data);
+                return;
+            }
+            if (result["code"] != "ok") {
+                $("#error").html(result["code"]);
+                return;
+            }
+
+            $("#error").css({"color":  "#006600"});
+            $("#error").html("{0} 欢迎回来, 您的最后登录时间为: {1}".format(result["nick_name"], result["last_login_date"]));
+
+            write_user_info($("#user_name").val(),
+                    result["nick_name"], result["last_login_date"], result["md5"],
+                    $("#auto_login_7")[0].checked);
+
+            if(get_url_args("auto_close")){
+                var ctl = $("#error");
+                ctl.html(ctl.html() + "<br>请点击右上角关闭按钮");
+            }
+            else{
+                location.href = "./theme.html";
+            }
+        }
+
+        function check(name, pwd) {
+            function change_style(ctl_id, class_name, is_add) {
+                if(is_add){$(ctl_id).addClass(class_name);}
+                else {$(ctl_id).removeClass(class_name);}
+            }
+
+            change_style("#user_name", "error_input_box", false);
+            change_style("#user_pwd", "error_input_box", false);
+
+            switch (check_user_info(name, pwd)){
+                case "name":change_style("#user_name", "error_input_box", true); return false;
+                case "pwd":change_style("#user_pwd", "error_input_box", true); return false;
+            }
+            return true;
+        }
+    </script>
+
+</head>
+
+<body class="bg">
+<div class="div_login" id="div_content">
+    <input id="user_name" type="text" placeholder="用户名" class="form-control input_box"/>
+    <br>
+    <input id="user_pwd" type="password" placeholder="密码" class="form-control input_box" style="display: inline-block; margin-top: 1em"/>
+    <br>
+
+    <label class="checkbox" style="margin-right: 14em; display: inline-block; margin-top: 1em; width: 7em">
+        <input id="auto_login_7" type="checkbox" data-toggle="checkbox" class="custom-checkbox">
+        <span class="icons">
+            <span class="icon-unchecked"></span>
+            <span class="icon-checked"></span>
+        </span>
+        7天内自动登陆
+    </label>
+    <br>
+    <br>
+
+    <div>
+        <input class="btn btn-hg btn-primary button_my" value="登 陆" type="button" onclick="submit();">
+        <a class="register" href="register.html">注 册</a>
+    </div>
+
+    <br>
+    <div id="error" style="text-align: left; color: #ff0000"></div>
+    <div id="err"></div>
+</div>
+
+<script type="application/javascript">
+    //get user info
+    (function () {
+        var tmp = get_user_info();
+        if(tmp){
+            $("#user_name").val(tmp["user_name"]);
+            $("#user_pwd").val("************");
+        }
+    })();
+
+    //get ip
+    $.get('http://jsonip.com/', function(r){g_ip = r.ip;});
+</script>
+
+</body>
+</html>
+

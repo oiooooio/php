@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画测试</title>
+
+    <link href="../../3rdlib/flat-ui-master/dist/css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <script src="../../js/extend_inner_obj_attr.js" type="application/javascript"></script>
+
+    <style>
+        body {
+            padding: 0;
+            margin: auto 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(51, 153, 255, 0.3);
+        }
+
+        .div {
+            margin: auto 0;
+            padding: 0.5em;
+            vertical-align: middle;
+        }
+
+        #div_tool_bar {
+            margin: auto 0;
+            /*text-align: center;*/
+            display: table-cell;
+            vertical-align: middle;
+            /*border: solid #9900CC 1px;*/
+            height: 3em;
+            /*background-color: #00a1cb;*/
+        }
+
+        .canvas {
+            /*width: 80%;*/
+            /*height: 80%;*/
+            border: solid 1px #FF33CC;
+            /*:media = "print";*/
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="div">
+    <div id="div_tool_bar">
+        <button class="btn btn-primary btn-wide" onclick="start()">开 始</button>
+        <button class="btn btn-primary btn-wide" onclick="restart()">重 来</button>
+        <button class="btn btn-primary btn-wide" onclick="stop()">停 止</button>
+        <button class="btn btn-primary btn-wide" onclick="clear_canvas()">清 除</button>
+        <br>
+        <p id="err_msg">信息显示</p>
+    </div>
+
+    <div id="div_canvas">
+        <canvas id="canvas_my" class="canvas">
+        </canvas>
+    </div>
+
+</div>
+
+<script>
+    var _g_canvas = {};
+    _g_canvas._cv = null;
+    _g_canvas._ctx = null;
+
+    var line_args = {};
+    line_args.x = 0;
+    line_args.y = 0;
+    line_args.step_len = 0;
+    line_args.timer_interval = 100;
+    line_args.timer = 0;
+
+    var _set_size_ok = false;
+    function set_canvas_size() {
+        if(_set_size_ok === true)
+            return;
+        _set_size_ok = true;
+        var body = document.body;
+        var div = document.getElementById("div_canvas");
+        _g_canvas._cv.setAttribute("width", div.clientWidth);
+        _g_canvas._cv.setAttribute("height", body.scrollHeight - div.offsetHeight);
+        set_err_msg("canvas size: w:{0}, h:{1}".format(div.clientWidth, body.scrollHeight - div.offsetHeight));
+    }
+
+    var err_msg = null;
+    function set_err_msg(msg) {
+        if(err_msg === null){
+            err_msg = document.getElementById("err_msg");
+        }
+        err_msg.innerText = msg;
+    }
+
+    function create_timer() {
+        if(line_args.timer !== 0)
+            return;
+        set_err_msg((new Date()).toString());
+
+        if(line_args.y === 0){
+            line_args.y = _g_canvas._cv.clientHeight / 2;
+            set_err_msg("horizontal middle line pos: " + line_args.y)
+        }
+
+        line_args.timer = window.setInterval(function () {
+            _g_canvas._ctx.strokeStyle = "rgba(102, 0, 153, 1)";
+            _g_canvas._ctx.lineWidth = 1;
+
+            _g_canvas._ctx.beginPath();
+            _g_canvas._ctx.moveTo(line_args.x, line_args.y);
+            line_args.step_len += 0.4;
+            var step_len_x = 0;
+            var step_len_y = 0;
+            for (var i=1; i<21; ++i){
+                step_len_x = i/2 + line_args.x;
+                step_len_y = Math.sin(line_args.step_len) * i + line_args.y;
+                _g_canvas._ctx.lineTo(step_len_x, step_len_y);
+            }
+            _g_canvas._ctx.stroke();
+            _g_canvas._ctx.closePath();
+            line_args.x = step_len_x;
+            line_args.y = step_len_y;
+        }, line_args.timer_interval);
+    }
+
+    function clear_timer() {
+        if (line_args.timer){
+            window.clearInterval(line_args.timer);
+            line_args.timer = 0;
+        }
+    }
+
+    //画水平线
+    function draw_vertical_line(step, color, line_width) {
+        _g_canvas._ctx.strokeStyle = color;
+        _g_canvas._ctx.lineWidth = line_width;
+        var index = 0;
+        for (var i = step + 0.5; i < _g_canvas._ctx.canvas.width; i += step) {
+            _g_canvas._ctx.beginPath();
+            _g_canvas._ctx.moveTo(i, 0);
+            _g_canvas._ctx.lineTo(i, _g_canvas._ctx.canvas.height);
+            _g_canvas._ctx.fillText("" + (++index), i-5, 10, 10);
+            _g_canvas._ctx.stroke();
+        }
+    }
+
+    //画垂直线
+    function draw_horizontal_line(step, color, line_width) {
+        _g_canvas._ctx.strokeStyle = color;
+        _g_canvas._ctx.lineWidth = line_width;
+        var index = 0;
+        for (var j = step + 0.5; j < _g_canvas._ctx.canvas.height; j += step) {
+            _g_canvas._ctx.beginPath();
+            _g_canvas._ctx.moveTo(0, j);
+            _g_canvas._ctx.lineTo(_g_canvas._ctx.canvas.width, j);
+            _g_canvas._ctx.fillText("" + (++index), 1, j+5, 10);
+            _g_canvas._ctx.stroke();
+        }
+    }
+
+    function start() {
+        if(_g_canvas._cv === null){
+            _g_canvas._cv = document.getElementById("canvas_my");
+            _g_canvas._ctx = _g_canvas._cv.getContext("2d");
+
+            set_canvas_size();
+            draw_vertical_line(20, "rgba(204, 102, 255, 1)", 0.5);
+            draw_horizontal_line(20, "rgba(204, 102, 255, 1)", 0.5);
+        }
+        create_timer();
+    }
+
+    function  restart() {
+        line_args.x = 0;
+        line_args.y = 0;
+        line_args.y = _g_canvas._cv.clientHeight / 2;
+    }
+
+    function stop() {
+        clear_timer();
+    }
+
+    function clear_canvas(){
+        set_err_msg("w:{0}, h:{1}".format(_g_canvas._cv.clientWidth, _g_canvas._cv.clientHeight));
+        _g_canvas._ctx.clearRect(0, 0, _g_canvas._cv.clientWidth, _g_canvas._cv.clientHeight);
+    }
+</script>
+
+</body>
+</html>

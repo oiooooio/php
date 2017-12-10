@@ -1,0 +1,112 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "commitplease@2.6.1",
+        "scope": null,
+        "escapedName": "commitplease",
+        "name": "commitplease",
+        "rawSpec": "2.6.1",
+        "spec": "2.6.1",
+        "type": "version"
+      },
+      "/home/wangli/project/ubuntu-php-apache/jquery"
+    ]
+  ],
+  "_from": "commitplease@2.6.1",
+  "_id": "commitplease@2.6.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/commitplease",
+  "_nodeVersion": "6.1.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/commitplease-2.6.1.tgz_1469453623140_0.5110359704121947"
+  },
+  "_npmUser": {
+    "name": "all3fox",
+    "email": "all3fox@gmail.com"
+  },
+  "_npmVersion": "3.8.6",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "commitplease@2.6.1",
+    "scope": null,
+    "escapedName": "commitplease",
+    "name": "commitplease",
+    "rawSpec": "2.6.1",
+    "spec": "2.6.1",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/commitplease/-/commitplease-2.6.1.tgz",
+  "_shasum": "ef633f01a1015e776b8d1eb63e88815aa17d6c33",
+  "_shrinkwrap": null,
+  "_spec": "commitplease@2.6.1",
+  "_where": "/home/wangli/project/ubuntu-php-apache/jquery",
+  "author": {
+    "name": "Jörn Zaefferer",
+    "url": "http://bassistance.de"
+  },
+  "bin": {
+    "commitplease": "./commit-msg-hook.js"
+  },
+  "bugs": {
+    "url": "https://github.com/jzaefferer/commitplease/issues"
+  },
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "mout": "^0.12.0",
+    "semver": "^5.1.0"
+  },
+  "description": "Validates strings as commit messages",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.9.0",
+    "mout": "^0.12.0",
+    "nodemon": "^1.9.1",
+    "nodeunit": "^0.9.1",
+    "standard": "^3.0.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "ef633f01a1015e776b8d1eb63e88815aa17d6c33",
+    "tarball": "https://registry.npmjs.org/commitplease/-/commitplease-2.6.1.tgz"
+  },
+  "gitHead": "4d0ac31cd2b05b5146b8d0257efb4d1be5284a31",
+  "homepage": "https://github.com/jzaefferer/commitplease#readme",
+  "keywords": [
+    "commit",
+    "message",
+    "validation"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "all3fox",
+      "email": "all3fox@gmail.com"
+    },
+    {
+      "name": "jzaefferer",
+      "email": "joern.zaefferer@gmail.com"
+    }
+  ],
+  "name": "commitplease",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jzaefferer/commitplease.git"
+  },
+  "scripts": {
+    "install": "node install",
+    "test": "standard && babel-node --presets=es2015 -- node_modules/.bin/nodeunit test.js",
+    "test-watch": "nodemon --exec npm run --silent test",
+    "uninstall": "node uninstall"
+  },
+  "version": "2.6.1"
+}

@@ -1,0 +1,96 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "grunt-git-authors@3.2.0",
+        "scope": null,
+        "escapedName": "grunt-git-authors",
+        "name": "grunt-git-authors",
+        "rawSpec": "3.2.0",
+        "spec": "3.2.0",
+        "type": "version"
+      },
+      "/home/wangli/project/ubuntu-php-apache/jquery"
+    ]
+  ],
+  "_from": "grunt-git-authors@3.2.0",
+  "_id": "grunt-git-authors@3.2.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/grunt-git-authors",
+  "_nodeVersion": "5.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/grunt-git-authors-3.2.0.tgz_1461018656644_0.9945830251090229"
+  },
+  "_npmUser": {
+    "name": "scott.gonzalez",
+    "email": "scott.gonzalez@gmail.com"
+  },
+  "_npmVersion": "3.7.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "grunt-git-authors@3.2.0",
+    "scope": null,
+    "escapedName": "grunt-git-authors",
+    "name": "grunt-git-authors",
+    "rawSpec": "3.2.0",
+    "spec": "3.2.0",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/grunt-git-authors/-/grunt-git-authors-3.2.0.tgz",
+  "_shasum": "0ff5ab6d3c6effe0ab215d6334345c0f6bfe1672",
+  "_shrinkwrap": null,
+  "_spec": "grunt-git-authors@3.2.0",
+  "_where": "/home/wangli/project/ubuntu-php-apache/jquery",
+  "author": {
+    "name": "Scott González",
+    "email": "scott.gonzalez@gmail.com",
+    "url": "http://scottgonzalez.com"
+  },
+  "bugs": {
+    "url": "https://github.com/scottgonzalez/grunt-git-authors/issues"
+  },
+  "dependencies": {
+    "spawnback": "~1.0.0"
+  },
+  "description": "Generate a list of authors from the git history.",
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "0.10.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "0ff5ab6d3c6effe0ab215d6334345c0f6bfe1672",
+    "tarball": "https://registry.npmjs.org/grunt-git-authors/-/grunt-git-authors-3.2.0.tgz"
+  },
+  "gitHead": "4c4ed5b2b18d120305fc4378e7bdd6d0bd39ca0b",
+  "homepage": "https://github.com/scottgonzalez/grunt-git-authors",
+  "keywords": [
+    "gruntplugin"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/scottgonzalez/grunt-git-authors/blob/master/LICENSE.txt"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "scott.gonzalez",
+      "email": "scott.gonzalez@gmail.com"
+    }
+  ],
+  "name": "grunt-git-authors",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/scottgonzalez/grunt-git-authors.git"
+  },
+  "scripts": {},
+  "version": "3.2.0"
+}
